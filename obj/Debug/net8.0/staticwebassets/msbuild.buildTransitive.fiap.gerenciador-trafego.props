@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\fiap.gerenciador-trafego.props" />
-</Project>
