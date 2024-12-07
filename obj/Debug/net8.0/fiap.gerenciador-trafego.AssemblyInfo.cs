@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("fiap.gerenciador-trafego")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e4d5736a8012512a3ec8384ac9cd65fd37d192b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb95ac5d28df103dd8a342d743bfc361a73b23d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("fiap.gerenciador-trafego")]
 [assembly: System.Reflection.AssemblyTitleAttribute("fiap.gerenciador-trafego")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

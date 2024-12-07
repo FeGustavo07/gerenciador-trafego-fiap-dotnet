@@ -14,5 +14,7 @@ namespace fiap.gerenciador_trafego.Models
         private string deEstado { get; set; }
         private int nrDuracaoEstado { get; set; }
         private DateOnly dtUltAtualizacao { get; set; }
+        private int climaId { get; set; } //chave estrangeira
+        private ClimaModel clima {  get; set; }
     }
 }
