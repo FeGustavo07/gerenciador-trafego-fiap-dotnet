@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using fiap.gerenciador_trafego.Data.Repository.Clima;
 using fiap.gerenciador_trafego.Models;
 using fiap.gerenciador_trafego.ViewModel.Semaforo;

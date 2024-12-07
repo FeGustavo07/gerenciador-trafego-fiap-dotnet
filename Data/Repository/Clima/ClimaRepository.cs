@@ -1,4 +1,4 @@
-using fiap.gerenciador_trafego.Models;
+﻿using fiap.gerenciador_trafego.Models;
 
 
 namespace fiap.gerenciador_trafego.Data.Repository.Clima;

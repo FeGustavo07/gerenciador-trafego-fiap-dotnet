@@ -1,8 +1,23 @@
 using AutoMapper;
+using fiap.gerenciador_trafego.Data.Repository;
+using fiap.gerenciador_trafego.Data.Repository.Acidente;
+using fiap.gerenciador_trafego.Data.Repository.Clima;
+using fiap.gerenciador_trafego.Data.Repository.Rota;
 using fiap.gerenciador_trafego.Data.Repository.Semaforo;
+using fiap.gerenciador_trafego.Data.Repository.SensorTrafego;
 using fiap.gerenciador_trafego.Models;
+using fiap.gerenciador_trafego.Services;
+using fiap.gerenciador_trafego.Services.Acidente;
+using fiap.gerenciador_trafego.Services.Clima;
+using fiap.gerenciador_trafego.Services.Rota;
 using fiap.gerenciador_trafego.Services.Semaforo;
+using fiap.gerenciador_trafego.Services.SensorTrafego;
+using fiap.gerenciador_trafego.ViewModel;
+using fiap.gerenciador_trafego.ViewModel.Acidente;
+using fiap.gerenciador_trafego.ViewModel.Clima;
+using fiap.gerenciador_trafego.ViewModel.Rota;
 using fiap.gerenciador_trafego.ViewModel.Semaforo;
+using fiap.gerenciador_trafego.ViewModel.SensorTrafego;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -13,25 +28,30 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region Inicialização DB Oracle
-
-var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
-builder.Services.AddDbContext<DatabaseContext>(
-    options => options.UseOracle(connectionString).EnableSensitiveDataLogging()
-);
-
-#endregion
 
 #region Registro IServiceCollection
 builder.Services.AddScoped<ISemaforoRepository, SemaforoRepository>();
 builder.Services.AddScoped<ISemaforoService, SemaforoService>();
 
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+builder.Services.AddScoped<IRotaRepository, RotaRepository>();
+builder.Services.AddScoped<IRotaService, RotaService>();
+
+builder.Services.AddScoped<IAcidenteRepository,  AcidenteRepository>();
+builder.Services.AddScoped<IAcidenteService,  AcidenteService>();
+
 builder.Services.AddScoped<IClimaRepository, ClimaRepository>();
 builder.Services.AddScoped<IClimaService, ClimaService>();
+
+builder.Services.AddScoped<ISensorTrafegoRepository, SensorTrafegoRepository>();
+builder.Services.AddScoped<ISensorTrafegoService, SensorTrafegoService>();
+
+builder.Services.AddScoped<IAuthService, AuthService>();
 #endregion
 
 #region AutoMapper
-
 var mapperConfig = new AutoMapper.MapperConfiguration(c =>
     {
         c.AllowNullCollections = true;
@@ -43,19 +63,30 @@ var mapperConfig = new AutoMapper.MapperConfiguration(c =>
         c.CreateMap<SemaforoModel, SemaforoCreateViewModel>();
         c.CreateMap<SemaforoModel, SemaforoUpdateViewModel>();
         c.CreateMap<SemaforoModel, SemaforoGetViewlModel>();
-        
-        c.CreateMap<ClimaCreateViewModel, ClimaModel>();
+
+        c.CreateMap<RotaCreateViewModel, RotaModel>();
+        c.CreateMap<RotaUpdateViewModel, RotaModel>();
+        c.CreateMap<RotaModel, RotaGetViewModel>();
+
+        c.CreateMap<AcidenteCreateViewModel, AcidenteModel>();
+        c.CreateMap<AcidenteUpdateViewModel, AcidenteModel>();
+        c.CreateMap<AcidenteModel, AcidenteGetViewModel>();
+
+        c.CreateMap<ClimaCreateViewModel,  ClimaModel>();
         c.CreateMap<ClimaUpdateViewModel, ClimaModel>();
-        c.CreateMap<ClimaGetViewlModel, ClimaModel>();
-        c.CreateMap<ClimaModel, ClimaCreateViewModel>();
-        c.CreateMap<ClimaModel, ClimaUpdateViewModel>();
-        c.CreateMap<ClimaModel, ClimaGetViewlModel>();
+        c.CreateMap<ClimaModel, ClimaGetViewModel>();
+
+        c.CreateMap<SensorTrafegoCreateViewModel, SensorTrafegoModel>();
+        c.CreateMap<SensorTrafegoUpdateViewlModel, SensorTrafegoModel>();
+        c.CreateMap<SensorTrafegoModel, SensorTrafegoGetViewModel>();
+
+        c.CreateMap<UsuarioModel, UsuarioGetViewModel>();
+        c.CreateMap<UsuarioCreateViewModel, UsuarioModel>();
     }
 );
 
 IMapper mapper = mapperConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
-
 #endregion
 
 #region Auth

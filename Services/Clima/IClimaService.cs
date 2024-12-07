@@ -1,4 +1,4 @@
-using fiap.gerenciador_trafego.ViewModel.Semaforo;
+﻿using fiap.gerenciador_trafego.ViewModel.Semaforo;
 
 namespace fiap.gerenciador_trafego.Services.Clima;
 
