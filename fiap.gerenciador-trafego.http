@@ -1,0 +1,6 @@
+@fiap.gerenciador_trafego_HostAddress = http://localhost:5036
+
+GET {{fiap.gerenciador_trafego_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

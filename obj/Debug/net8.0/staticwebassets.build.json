@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "okYIGE811qtjtF36zpXpKLgyWzKdzm1xOENTySG2az4=",
+  "Source": "fiap.gerenciador-trafego",
+  "BasePath": "_content/fiap.gerenciador-trafego",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
