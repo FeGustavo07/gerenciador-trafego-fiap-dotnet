@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.gerenciador_trafego.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize(Roles = "desenvolvedor,avaliador")]
     public class SemaforoController : ControllerBase
@@ -52,6 +52,7 @@ namespace fiap.gerenciador_trafego.Controllers
         }
 
         [HttpPost]
+        
         public ActionResult Create([FromBody] SemaforoCreateViewModel semaforoCreateViewModel)
         {
             SemaforoGetViewlModel semaforo;

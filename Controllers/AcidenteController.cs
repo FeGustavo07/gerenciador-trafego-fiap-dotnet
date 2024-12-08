@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.gerenciador_trafego.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize(Roles = "desenvolvedor,avaliador")]
     public class AcidenteController : ControllerBase

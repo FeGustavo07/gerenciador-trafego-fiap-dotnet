@@ -4,29 +4,41 @@ namespace fiap.gerenciador_trafego.Data.Repository.Semaforo
 {
     public class SemaforoRepository : ISemaforoRepository
     {
+        private readonly DatabaseContext _context;
+        
+        public SemaforoRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
+        
         public SemaforoModel Add(SemaforoModel model)
         {
-            throw new NotImplementedException();
+            _context.Semaforo.Add(model);
+            _context.SaveChanges();
+            return model;
         }
 
         public void DeleteById(SemaforoModel model)
         {
-            throw new NotImplementedException();
+            _context.Semaforo.Remove(model);
+            _context.SaveChanges();
         }
 
         public IEnumerable<SemaforoModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Semaforo.ToList();
         }
 
         public SemaforoModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Semaforo.Find(id) ?? throw new Exception("Clima não encontrado");
         }
 
         public SemaforoModel Update(SemaforoModel model)
         {
-            throw new NotImplementedException();
+            _context.Semaforo.Update(model);
+            _context.SaveChanges();
+            return model;
         }
     }
 }

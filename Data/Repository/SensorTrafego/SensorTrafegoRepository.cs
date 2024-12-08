@@ -4,29 +4,41 @@ namespace fiap.gerenciador_trafego.Data.Repository.SensorTrafego
 {
     public class SensorTrafegoRepository : ISensorTrafegoRepository
     {
+        private readonly DatabaseContext _context;
+
+        public SensorTrafegoRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
+        
         public SensorTrafegoModel Add(SensorTrafegoModel model)
         {
-            throw new NotImplementedException();
+            _context.SensorTrafego.Add(model);
+            _context.SaveChanges();
+            return model;
         }
 
         public void DeleteById(SensorTrafegoModel model)
         {
-            throw new NotImplementedException();
+            _context.SensorTrafego.Remove(model);
+            _context.SaveChanges();
         }
 
         public IEnumerable<SensorTrafegoModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.SensorTrafego.ToList();
         }
 
         public SensorTrafegoModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.SensorTrafego.Find(id) ?? throw new Exception("SensorTrafego não encontrado");
         }
 
         public SensorTrafegoModel Update(SensorTrafegoModel model)
         {
-            throw new NotImplementedException();
+            _context.SensorTrafego.Update(model);
+            _context.SaveChanges();
+            return model;
         }
     }
 }

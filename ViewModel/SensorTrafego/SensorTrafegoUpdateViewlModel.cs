@@ -12,7 +12,7 @@ namespace fiap.gerenciador_trafego.ViewModel.SensorTrafego
         public int nrVisibilidade { get; set; }
 
         [Required(ErrorMessage = "A data de detecção é obrigatória")]
-        public DateOnly dtDeteccao { get; set; }
+        public DateTime dtDeteccao { get; set; }    
 
         [Required(ErrorMessage = "O id do semaforo é obrigatório")]
         public int semaforoId { get; set; }

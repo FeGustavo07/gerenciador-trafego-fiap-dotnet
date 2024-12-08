@@ -8,7 +8,7 @@ using System.Text;
 
 namespace fiap.gerenciador_trafego.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -40,7 +40,7 @@ namespace fiap.gerenciador_trafego.Controllers
 
         private string GenerateJwtToken(UsuarioGetViewModel usuario)
         {
-            byte[] secret = Encoding.ASCII.GetBytes(_configuration["EncryptionKey"]);
+            byte[] secret = Encoding.ASCII.GetBytes("f57fd9bbe041d379720eec80199cee4ec2d9a7a7800f486baec2711de5651208b6153bf41028d9d56ff3f1666df9803a83296a37eb8087aee70d313004345e0c32d91784a46dabef8cc88c13a180e0909798c796659d950266047dda28f95b20e14bf72032ea423f657393654f9e33af3e53e65110d5e6027bfdf55f5a5378");
             var securityKey = new SymmetricSecurityKey(secret);
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
@@ -48,8 +48,8 @@ namespace fiap.gerenciador_trafego.Controllers
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, usuario.username),
-                    new Claim(ClaimTypes.Role, usuario.role),
+                    new Claim(ClaimTypes.Name, usuario.Username),
+                    new Claim(ClaimTypes.Role, usuario.Role),
                     new Claim(ClaimTypes.Hash, Guid.NewGuid().ToString())
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(5),

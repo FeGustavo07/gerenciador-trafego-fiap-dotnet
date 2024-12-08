@@ -4,29 +4,43 @@ namespace fiap.gerenciador_trafego.Data.Repository.Rota
 {
     public class RotaRepository : IRotaRepository
     {
+        
+        private readonly DatabaseContext _context;
+
+        public RotaRepository(DatabaseContext context)
+        {
+            _context = context;
+        }
+        
         public RotaModel Add(RotaModel model)
         {
-            throw new NotImplementedException();
+            _context.Rota.Add(model);
+            _context.SaveChanges();
+            return model;
         }
 
         public void DeleteById(RotaModel model)
         {
-            throw new NotImplementedException();
+            _context.Rota.Remove(model);
+            _context.SaveChanges();
         }
 
         public IEnumerable<RotaModel> GetAll()
         {
-            throw new NotImplementedException();
+            _context.Rota.ToList();
+            return _context.Rota.ToList();
         }
 
         public RotaModel GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Rota.Find(id) ?? throw new Exception("Rota não encontrada");
         }
 
         public RotaModel Update(RotaModel model)
         {
-            throw new NotImplementedException();
+            _context.Rota.Update(model);
+            _context.SaveChanges();
+            return model;
         }
     }
 }

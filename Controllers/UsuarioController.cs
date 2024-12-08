@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace fiap.gerenciador_trafego.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {

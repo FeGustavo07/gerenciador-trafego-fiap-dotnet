@@ -25,10 +25,10 @@ namespace fiap.gerenciador_trafego.Services.Clima
             return climaViewModel;
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(long id)
         {
             var clima = _climaRepository.GetById(id);
-            _climaRepository.DeleteById(clima);
+            _climaRepository.Delete(clima);
         }
 
         public IEnumerable<ClimaGetViewModel> GetAll()
@@ -38,20 +38,20 @@ namespace fiap.gerenciador_trafego.Services.Clima
             return climasModel;
         }
 
-        public ClimaGetViewModel GetById(int id)
+        public ClimaGetViewModel GetById(long id)
         {
             var clima = _climaRepository.GetById(id);
             var climaModel = _mapper.Map<ClimaGetViewModel>(clima);
             return climaModel;
         }
 
-        public ClimaGetViewModel Update(int id, ClimaUpdateViewModel model)
+        public ClimaGetViewModel Update(long id, ClimaUpdateViewModel model)
         {
             var clima = _climaRepository.GetById(id);
-            clima = _mapper.Map<ClimaModel>(model);
-            _climaRepository.Add(clima);
-            var climaViewModel = _mapper.Map<ClimaGetViewModel>(clima);
-            return climaViewModel;
+            if (clima == null) throw new Exception("Clima não encontrado");
+            _mapper.Map(model, clima);
+            clima = _climaRepository.Update(clima);
+            return _mapper.Map<ClimaGetViewModel>(clima);
         }
     }
 }

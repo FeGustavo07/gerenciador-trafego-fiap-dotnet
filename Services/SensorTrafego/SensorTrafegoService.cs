@@ -21,7 +21,7 @@ namespace fiap.gerenciador_trafego.Services.SensorTrafego
             throw new NotImplementedException();
         }
 
-        public SensorTrafegoGetViewModel DeleteById(int id)
+        public void DeleteById(int id)
         {
             throw new NotImplementedException();
         }

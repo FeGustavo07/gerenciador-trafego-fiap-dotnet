@@ -2,8 +2,8 @@
 {
     public class UsuarioCreateViewModel
     {
-        private string username { get; set; }
-        private string password { get; set; }
-        private string role { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }  // Em produção, nunca armazene senhas em texto claro.
+        public string? Role { get; set; }
     }
 }

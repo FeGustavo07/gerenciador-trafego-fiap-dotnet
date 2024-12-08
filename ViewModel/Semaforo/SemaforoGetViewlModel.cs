@@ -8,6 +8,6 @@ namespace fiap.gerenciador_trafego.ViewModel.Semaforo
         public string dsLocalizacao { get; set; }
         public string dsEstado { get; set; }
         public int nmDuracaoEstado { get; set; }
-        public DateOnly dtUltAtualizacao { get; set; }
+        public DateTime dtUltAtualizacao { get; set; }
     }
 }

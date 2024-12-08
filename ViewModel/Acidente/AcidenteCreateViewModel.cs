@@ -9,7 +9,7 @@ namespace fiap.gerenciador_trafego.ViewModel.Acidente
         public string localAcidente { get; set; }
 
         [Required(ErrorMessage = "A data do acidente é obrigatória")]
-        public DateOnly dataAcidente { get; set; }
+        public DateTime dataAcidente { get; set; }
 
         [Required(ErrorMessage = "A gravidade do acidente é obrigatória")]
         public string gravidade { get; set; }

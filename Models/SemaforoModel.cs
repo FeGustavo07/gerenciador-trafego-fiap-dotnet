@@ -9,12 +9,27 @@ namespace fiap.gerenciador_trafego.Models
     public class SemaforoModel
     {
         [Key]
-        private int id { get; set; }
-        private string dsLocalizacao { get; set; }
-        private string deEstado { get; set; }
-        private int nrDuracaoEstado { get; set; }
-        private DateOnly dtUltAtualizacao { get; set; }
-        private int climaId { get; set; } //chave estrangeira
-        private ClimaModel clima {  get; set; }
+        [Column("id_semaforo")]
+        public int IdSemaforo { get; set; }
+
+        [Column("ds_localizacao")]
+        [MaxLength(150)]
+        public string DsLocalizacao { get; set; }
+
+        [Column("ds_estado")]
+        [MaxLength(10)]
+        public string DsEstado { get; set; } = "vermelho";
+
+        [Column("nr_duracao_estado")]
+        public int NrDuracaoEstado { get; set; }
+
+        [Column("dt_ult_atualizacao")]
+        public DateTime DtUltAtualizacao { get; set; }
+
+        [Column("t_gti_clima_id_clima")]
+        public long? ClimaId { get; set; }
+
+        [ForeignKey("ClimaId")]
+        public ClimaModel? Clima { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.gerenciador_trafego.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     [Authorize(Roles = "desenvolvedor,avaliador")]
     public class ClimaController : ControllerBase
@@ -38,7 +38,7 @@ namespace fiap.gerenciador_trafego.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ClimaGetViewModel> GetById([FromRoute] int id)
+        public ActionResult<ClimaGetViewModel> GetById([FromRoute] long id)
         {
             ClimaGetViewModel clima;
 
@@ -62,7 +62,7 @@ namespace fiap.gerenciador_trafego.Controllers
             try
             {
                 clima = _climaService.Add(climaCreateViewModel);
-                return CreatedAtAction(nameof(GetById), new { id = clima.id }, clima);
+                return CreatedAtAction(nameof(GetById), new { id = clima.IdClima }, clima);
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace fiap.gerenciador_trafego.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ClimaGetViewModel> Update([FromRoute] int id, [FromBody]  ClimaUpdateViewModel climaUpdateViewModel)
+        public ActionResult<ClimaGetViewModel> Update([FromRoute] long id, [FromBody]  ClimaUpdateViewModel climaUpdateViewModel)
         {
             ClimaGetViewModel clima;
 
@@ -88,7 +88,7 @@ namespace fiap.gerenciador_trafego.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete([FromRoute] int id)
+        public ActionResult Delete([FromRoute] long id)
         {
             try
             {

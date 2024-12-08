@@ -14,6 +14,6 @@ namespace fiap.gerenciador_trafego.ViewModel.Semaforo
         public int nmDuracaoEstado { get; set; }
 
         [Required(ErrorMessage = "A data de atualização é obrigatória")]
-        public DateOnly dtUltAtualizacao { get; set; }
+        public DateTime dtUltAtualizacao { get; set; }
     }
 }

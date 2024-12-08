@@ -6,9 +6,9 @@ namespace fiap.gerenciador_trafego.Services.Clima
     public interface IClimaService
     {
         IEnumerable<ClimaGetViewModel> GetAll();
-        ClimaGetViewModel GetById(int id);
+        ClimaGetViewModel GetById(long id);
         ClimaGetViewModel Add(ClimaCreateViewModel model);
-        ClimaGetViewModel Update(int id, ClimaUpdateViewModel model);
-        void DeleteById(int id);
+        ClimaGetViewModel Update(long id, ClimaUpdateViewModel model);
+        void DeleteById(long id);
     }
 }

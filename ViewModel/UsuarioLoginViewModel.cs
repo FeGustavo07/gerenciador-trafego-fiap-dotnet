@@ -2,7 +2,7 @@
 {
     public class UsuarioLoginViewModel
     {
-        public string username { get; set; }
-        public string password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }  // Em produção, nunca armazene senhas em texto claro.
     }
 }

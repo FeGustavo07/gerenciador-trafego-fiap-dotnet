@@ -7,7 +7,7 @@ namespace fiap.gerenciador_trafego.ViewModel.SensorTrafego
         public int id { get; set; }
         public int qtFluxoVeiculos { get; set; }
         public int nrVisibilidade { get; set; }
-        public DateOnly dtDeteccao { get; set; }
+        public DateTime dtDeteccao { get; set; }
         public int semaforoId { get; set; }
         public SemaforoModel semaforo { get; set; }
     }

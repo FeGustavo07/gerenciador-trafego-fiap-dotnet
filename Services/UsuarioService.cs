@@ -24,7 +24,7 @@ namespace fiap.gerenciador_trafego.Services
 
         public UsuarioGetViewModel GetByNomeESenha(UsuarioLoginViewModel usuarioLoginViewModel)
         {
-            var usuarioModel = _usuarioRepository.GetByNomeESenha(usuarioLoginViewModel.username, usuarioLoginViewModel.password);
+            var usuarioModel = _usuarioRepository.GetByNomeESenha(usuarioLoginViewModel.Username, usuarioLoginViewModel.Password);
             var usuarioViewModel = _mapper.Map<UsuarioGetViewModel>(usuarioModel);
             return usuarioViewModel;
         }
