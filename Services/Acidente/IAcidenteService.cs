@@ -9,6 +9,6 @@ namespace fiap.gerenciador_trafego.Services.Acidente
         AcidenteGetViewModel GetById(int id);
         AcidenteGetViewModel Add(AcidenteCreateViewModel model);
         AcidenteGetViewModel Update(int id, AcidenteUpdateViewModel model);
-        AcidenteGetViewModel DeleteById(int id);
+        void DeleteById(int id);
     }
 }

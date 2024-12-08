@@ -1,4 +1,5 @@
 ﻿using fiap.gerenciador_trafego.Services.SensorTrafego;
+using fiap.gerenciador_trafego.ViewModel.Acidente;
 using fiap.gerenciador_trafego.ViewModel.SensorTrafego;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,7 @@ namespace fiap.gerenciador_trafego.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "desenvolvedor,avaliador")]
     public class SensorTrafegoController : ControllerBase
     {
         private readonly ISensorTrafegoService _sensorTrafegoService;
@@ -21,49 +22,80 @@ namespace fiap.gerenciador_trafego.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<SensorTrafegoGetViewModel>> GetAll()
         {
-            var sensorTrafego = _sensorTrafegoService.GetAll();
+            IEnumerable<SensorTrafegoGetViewModel> sensores;
 
-            if (sensorTrafego == null)
+            try
             {
-                return NoContent();
+                sensores = _sensorTrafegoService.GetAll();
+                return Ok(sensores);
             }
-
-            return Ok(sensorTrafego);
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<SensorTrafegoGetViewModel> GetById([FromRoute] int id)
         {
-            var sensorTrafego = _sensorTrafegoService.GetById(id);
+            SensorTrafegoGetViewModel sensor;
 
-            if (sensorTrafego == null)
+            try
+            {
+                sensor = _sensorTrafegoService.GetById(id);
+                return Ok(sensor);
+            }
+            catch (Exception ex)
             {
                 return NotFound();
             }
-
-            return Ok(sensorTrafego);
         }
 
         [HttpPost]
         public ActionResult Create([FromBody] SensorTrafegoCreateViewModel sensorTrafegoCreateViewModel)
         {
-            var sensorTrafego = _sensorTrafegoService.Add(sensorTrafegoCreateViewModel);
-            return CreatedAtAction(nameof(GetById), new { id = sensorTrafego.id }, sensorTrafego);
+            SensorTrafegoGetViewModel sensor;
+
+            try
+            {
+                sensor = _sensorTrafegoService.Add(sensorTrafegoCreateViewModel);
+                return CreatedAtAction(nameof(GetById), new { id = sensor.id }, sensor);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
         public ActionResult<SensorTrafegoGetViewModel> Update([FromRoute] int id, [FromBody] SensorTrafegoUpdateViewlModel sensorTrafegoUpdateViewlModel)
         {
-            var sensorTrafego = _sensorTrafegoService.Update(id, sensorTrafegoUpdateViewlModel);
-            return Ok(sensorTrafego);
+            SensorTrafegoGetViewModel sensor;
+
+            try
+            {
+                sensor = _sensorTrafegoService.Update(id, sensorTrafegoUpdateViewlModel);
+                return Ok(sensor);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
 
 
         [HttpDelete("{id}")]
         public ActionResult<SensorTrafegoGetViewModel> Delete([FromRoute] int id)
         {
-            var sensorTrafego = _sensorTrafegoService.DeleteById(id);
-            return Ok(sensorTrafego);
+            try
+            {
+                _sensorTrafegoService.DeleteById(id);
+                return Ok(new { Message = "Operação concluída com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using fiap.gerenciador_trafego.Services.Rota;
+using fiap.gerenciador_trafego.ViewModel.Acidente;
 using fiap.gerenciador_trafego.ViewModel.Clima;
 using fiap.gerenciador_trafego.ViewModel.Rota;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ namespace fiap.gerenciador_trafego.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "desenvolvedor,avaliador")]
     public class RotaController : ControllerBase
     {
         private readonly IRotaService _rotaService;
@@ -22,36 +23,79 @@ namespace fiap.gerenciador_trafego.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<RotaGetViewModel>> GetAll()
         {
-            var rotas = _rotaService.GetAll();
-            return Ok(rotas);
+            IEnumerable<RotaGetViewModel> rotas;
+
+            try
+            {
+                rotas = _rotaService.GetAll();
+                return Ok(rotas);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
         public ActionResult<RotaGetViewModel> GetById([FromRoute] int id)
         {
-            var rota = _rotaService.GetById(id);
-            return Ok(rota);
+            RotaGetViewModel rota;
+
+            try
+            {
+                rota = _rotaService.GetById(id);
+                return Ok(rota);
+            }
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPost]
         public ActionResult Create([FromBody] RotaCreateViewModel rotaCreateViewModel)
         {
-            var rota = _rotaService.Add(rotaCreateViewModel);
-            return CreatedAtAction(nameof(GetById), new { id = rota.id }, rota);
+            RotaGetViewModel rota;
+
+            try
+            {
+                rota = _rotaService.Add(rotaCreateViewModel);
+                return CreatedAtAction(nameof(GetById), new { id = rota.id }, rota);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
 
         [HttpPut("{id}")]
         public ActionResult<RotaGetViewModel> Update([FromRoute] int id, [FromBody] RotaUpdateViewModel rotaUpdateViewModel)
         {
-            var rota = _rotaService.Update(id, rotaUpdateViewModel);
-            return Ok(rota);
+            RotaGetViewModel rota;
+
+            try
+            {
+                rota = _rotaService.Update(id, rotaUpdateViewModel);
+                return Ok(rota);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
 
         [HttpDelete("{id}")]
         public ActionResult<RotaGetViewModel> Delete([FromRoute] int id)
         {
-            var rota = _rotaService.DeleteById(id);
-            return Ok(rota);
+            try
+            {
+                _rotaService.DeleteById(id);
+                return Ok(new { Message = "Operação concluída com sucesso." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ namespace fiap.gerenciador_trafego.Services.Clima
         ClimaGetViewModel GetById(int id);
         ClimaGetViewModel Add(ClimaCreateViewModel model);
         ClimaGetViewModel Update(int id, ClimaUpdateViewModel model);
-        ClimaGetViewModel DeleteById(int id);
+        void DeleteById(int id);
     }
 }

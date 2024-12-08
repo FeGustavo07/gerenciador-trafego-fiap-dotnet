@@ -9,6 +9,6 @@ namespace fiap.gerenciador_trafego.Services.Rota
         RotaGetViewModel GetById(int id);
         RotaGetViewModel Add(RotaCreateViewModel model);
         RotaGetViewModel Update(int id, RotaUpdateViewModel model);
-        RotaGetViewModel DeleteById(int id);
+        void DeleteById(int id);
     }
 }
