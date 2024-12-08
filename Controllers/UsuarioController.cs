@@ -19,8 +19,15 @@ namespace fiap.gerenciador_trafego.Controllers
         [HttpPost]
         public ActionResult Create([FromBody] UsuarioCreateViewModel usuarioCreateViewModel)
         {
-            _usuarioService.Add(usuarioCreateViewModel);
-            return Created();
+            try
+            {
+                _usuarioService.Add(usuarioCreateViewModel);
+                return Created();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An internal server error occurred.", Details = ex.Message });
+            }
         }
     }
 }

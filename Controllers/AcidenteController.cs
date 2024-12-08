@@ -31,7 +31,7 @@ namespace fiap.gerenciador_trafego.Controllers
             }
             catch (Exception ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
             }
 
         }

@@ -9,6 +9,6 @@ namespace fiap.gerenciador_trafego.Services.Semaforo
         SemaforoGetViewlModel GetById(int id);
         SemaforoGetViewlModel Add(SemaforoCreateViewModel model);
         SemaforoGetViewlModel Update(int id, SemaforoUpdateViewModel model);
-        SemaforoGetViewlModel DeleteById(int id);
+        void DeleteById(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using fiap.gerenciador_trafego.Data.Repository.Semaforo;
+using fiap.gerenciador_trafego.Models;
 using fiap.gerenciador_trafego.ViewModel.Semaforo;
 
 namespace fiap.gerenciador_trafego.Services.Semaforo
@@ -21,29 +22,39 @@ namespace fiap.gerenciador_trafego.Services.Semaforo
 
         public SemaforoGetViewlModel Add(SemaforoCreateViewModel model)
         {
-           
-
-            throw new NotImplementedException();
+            var semaforo = _mapper.Map<SemaforoModel>(model);
+            _semaforoReposiroty.Add(semaforo);
+            var semaforoViewModel = _mapper.Map<SemaforoGetViewlModel>(semaforo);
+            return semaforoViewModel;
         }
 
-        public SemaforoGetViewlModel DeleteById(int id)
+        public void DeleteById(int id)
         {
-            throw new NotImplementedException();
+            var semaforo = _semaforoReposiroty.GetById(id);
+            _semaforoReposiroty.DeleteById(semaforo);
         }
 
         public IEnumerable<SemaforoGetViewlModel> GetAll()
         {
-            throw new NotImplementedException();
+            var semaforos = _semaforoReposiroty.GetAll();
+            var semaforosModel = _mapper.Map<IEnumerable<SemaforoGetViewlModel>>(semaforos);
+            return semaforosModel;
         }
 
         public SemaforoGetViewlModel GetById(int id)
         {
-            throw new NotImplementedException();
+            var semaforo = _semaforoReposiroty.GetById(id);
+            var semaforoModel = _mapper.Map<SemaforoGetViewlModel>(semaforo);
+            return semaforoModel;
         }
 
         public SemaforoGetViewlModel Update(int id, SemaforoUpdateViewModel model)
         {
-            throw new NotImplementedException();
+            var semaforo = _semaforoReposiroty.GetById(id);
+            semaforo = _mapper.Map<SemaforoModel>(model);
+            _semaforoReposiroty.Add(semaforo);
+            var semaforoViewModel = _mapper.Map<SemaforoGetViewlModel>(semaforo);
+            return semaforoViewModel;
         }
     }
 }
