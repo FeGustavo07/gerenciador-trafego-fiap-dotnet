@@ -1,6 +1,6 @@
 ﻿using fiap.gerenciador_trafego.Services.Clima;
 using fiap.gerenciador_trafego.ViewModel.Semaforo;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace fiap.gerenciador_trafego.Controllers
