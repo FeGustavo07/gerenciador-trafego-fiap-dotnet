@@ -2,8 +2,8 @@
 {
     public class UsuarioCreateViewModel
     {
-        private string username { get; set; }
-        private string password { get; set; }
-        private string role { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string role { get; set; }
     }
 }
