@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using fiap.gerenciador_trafego.Data.Repository.Clima;
 using fiap.gerenciador_trafego.Models;
-using fiap.gerenciador_trafego.ViewModel.Semaforo;
+using fiap.gerenciador_trafego.ViewModel.Clima;
 
 namespace fiap.gerenciador_trafego.Services.Clima;
 
@@ -16,39 +16,39 @@ public class ClimaService : IClimaService
         _mapper = mapper;
     }
 
-    public IEnumerable<ClimaGetViewlModel> GetAll()
+    public IEnumerable<ClimaGetViewModel> GetAll()
     {
         var climas = _climaRepository.GetAll();
-        return _mapper.Map<IEnumerable<ClimaGetViewlModel>>(climas);
+        return _mapper.Map<IEnumerable<ClimaGetViewModel>>(climas);
     }
 
-    public ClimaGetViewlModel GetById(long id)
+    public ClimaGetViewModel GetById(long id)
     {
         var clima = _climaRepository.GetById(id);
         if (clima == null) throw new Exception("Clima não encontrado");
-        return _mapper.Map<ClimaGetViewlModel>(clima);
+        return _mapper.Map<ClimaGetViewModel>(clima);
     }
 
-    public ClimaGetViewlModel Add(ClimaCreateViewModel climaCreateViewModel)
+    public ClimaGetViewModel Add(ClimaCreateViewModel climaCreateViewModel)
     {
         throw new NotImplementedException();
     }
 
 
-    public ClimaGetViewlModel Create(ClimaCreateViewModel climaCreateViewModel)
+    public ClimaGetViewModel Create(ClimaCreateViewModel climaCreateViewModel)
     {
         var clima = _mapper.Map<ClimaModel>(climaCreateViewModel);
         clima = _climaRepository.Add(clima);
-        return _mapper.Map<ClimaGetViewlModel>(clima);
+        return _mapper.Map<ClimaGetViewModel>(clima);
     }
     
-    public ClimaGetViewlModel Update(long id, ClimaUpdateViewModel climaUpdateViewModel)
+    public ClimaGetViewModel Update(long id, ClimaUpdateViewModel climaUpdateViewModel)
     {
         var clima = _climaRepository.GetById(id);
         if (clima == null) throw new Exception("Clima não encontrado");
         _mapper.Map(climaUpdateViewModel, clima);
         clima = _climaRepository.Update(clima);
-        return _mapper.Map<ClimaGetViewlModel>(clima);
+        return _mapper.Map<ClimaGetViewModel>(clima);
     }
 
     public void DeleteById(long id)

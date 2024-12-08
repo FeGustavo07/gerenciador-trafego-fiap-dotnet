@@ -1,5 +1,5 @@
 ﻿using fiap.gerenciador_trafego.Services.Clima;
-using fiap.gerenciador_trafego.ViewModel.Semaforo;
+using fiap.gerenciador_trafego.ViewModel.Clima;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,14 +17,14 @@ namespace fiap.gerenciador_trafego.Controllers
         }
         
         [HttpGet]
-        public ActionResult<IEnumerable<ClimaGetViewlModel>> GetAll()
+        public ActionResult<IEnumerable<ClimaGetViewModel>> GetAll()
         {
             var result = _climaService.GetAll();
             return Ok(result);
         }
         
         [HttpGet("{id}")]
-        public ActionResult<ClimaGetViewlModel> GetById(long id)
+        public ActionResult<ClimaGetViewModel> GetById(long id)
         {
             var result = _climaService.GetById(id);
             return Ok(result);
@@ -38,14 +38,14 @@ namespace fiap.gerenciador_trafego.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<ClimaGetViewlModel> Update(long id, [FromBody] ClimaUpdateViewModel climaUpdateViewModel)
+        public ActionResult<ClimaGetViewModel> Update(long id, [FromBody] ClimaUpdateViewModel climaUpdateViewModel)
         {
             var result = _climaService.Update(id, climaUpdateViewModel);
             return Ok(result);
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<ClimaGetViewlModel> Delete(long id)
+        public ActionResult<ClimaGetViewModel> Delete(long id)
         {
             _climaService.DeleteById(id);
             return Ok();

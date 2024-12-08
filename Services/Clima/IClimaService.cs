@@ -1,12 +1,12 @@
-﻿using fiap.gerenciador_trafego.ViewModel.Semaforo;
+﻿using fiap.gerenciador_trafego.ViewModel.Clima;
 
 namespace fiap.gerenciador_trafego.Services.Clima;
 
 public interface IClimaService
 {
-    IEnumerable<ClimaGetViewlModel> GetAll();
-    ClimaGetViewlModel GetById(long id);
-    ClimaGetViewlModel Create(ClimaCreateViewModel climaCreateViewModel);
-    ClimaGetViewlModel Update(long id, ClimaUpdateViewModel climaUpdateViewModel);
+    IEnumerable<ClimaGetViewModel> GetAll();
+    ClimaGetViewModel GetById(long id);
+    ClimaGetViewModel Create(ClimaCreateViewModel climaCreateViewModel);
+    ClimaGetViewModel Update(long id, ClimaUpdateViewModel climaUpdateViewModel);
     void DeleteById(long id);
 }

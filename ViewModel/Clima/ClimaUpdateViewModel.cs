@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace fiap.gerenciador_trafego.ViewModel.Semaforo
+namespace fiap.gerenciador_trafego.ViewModel.Clima
 {
     public class ClimaUpdateViewModel
     {

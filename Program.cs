@@ -28,6 +28,14 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region Inicialização DB Oracle
+
+var connectionString = builder.Configuration.GetConnectionString("DatabaseConnection");
+builder.Services.AddDbContext<DatabaseContext>(
+    options => options.UseOracle(connectionString).EnableSensitiveDataLogging()
+);
+
+#endregion
 
 #region Registro IServiceCollection
 builder.Services.AddScoped<ISemaforoRepository, SemaforoRepository>();
@@ -74,6 +82,9 @@ var mapperConfig = new AutoMapper.MapperConfiguration(c =>
 
         c.CreateMap<ClimaCreateViewModel,  ClimaModel>();
         c.CreateMap<ClimaUpdateViewModel, ClimaModel>();
+        c.CreateMap<ClimaGetViewModel, ClimaModel>();
+        c.CreateMap<ClimaModel, ClimaCreateViewModel>();
+        c.CreateMap<ClimaModel, ClimaUpdateViewModel>();
         c.CreateMap<ClimaModel, ClimaGetViewModel>();
 
         c.CreateMap<SensorTrafegoCreateViewModel, SensorTrafegoModel>();

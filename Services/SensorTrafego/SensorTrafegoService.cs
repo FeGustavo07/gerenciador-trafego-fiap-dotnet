@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using fiap.gerenciador_trafego.Data.Repository.SensorTrafego;
 using fiap.gerenciador_trafego.ViewModel.SensorTrafego;
 
 namespace fiap.gerenciador_trafego.Services.SensorTrafego
@@ -6,12 +7,12 @@ namespace fiap.gerenciador_trafego.Services.SensorTrafego
     public class SensorTrafegoService : ISensorTrafegoService
     {
 
-        private readonly ISensorTrafegoService _sensorTrafegoService;
+        private readonly ISensorTrafegoRepository _sensorTrafegoRepository;
         private readonly IMapper _mapper;
 
-        public SensorTrafegoService(ISensorTrafegoService sensorTrafegoService, IMapper mapper)
+        public SensorTrafegoService(ISensorTrafegoRepository sensorTrafegoRepository, IMapper mapper)
         {
-            _sensorTrafegoService = sensorTrafegoService;
+            _sensorTrafegoRepository = sensorTrafegoRepository;
             _mapper = mapper;
         }
 
