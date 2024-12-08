@@ -8,7 +8,7 @@ namespace fiap.gerenciador_trafego.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class SemaforoController : ControllerBase
     {
         private readonly ISemaforoService _service;
